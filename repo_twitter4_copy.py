@@ -61,7 +61,7 @@ def writeIssuesToCSV(repo, issues):  # write to csv
 def writeIssuesToCSV2(repo, singleIssue, count, j, title):
     # #print count
     # #print len(singleIssue)
-    f1 = csv.writer(open(repo + "/" + repo + "ReposIssues%d.csv" % j, "a+"))
+    f1 = csv.writer(open(repo + "/" + time.strftime("%d%m%Y") + repo + "ReposIssues%d.csv" % j, "a+"))
     item_keys = []
     item_values = []
 

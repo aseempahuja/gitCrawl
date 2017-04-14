@@ -8,6 +8,7 @@ import collections
 import types
 import unicodedata
 import sys
+import datetime
 
 import time
 import random
@@ -38,9 +39,9 @@ def listReleases(user_name, repos, headers):
 
     return data
 
-
+#time.strftime("%d%m%Y")
 def writeReleasesToCSV(repo, releases):  # write to csv
-    f = csv.writer(open(repo + "/" + repo + "ReposReleases.csv", "wb+"))
+    f = csv.writer(open(repo + "/" + time.strftime("%d%m%Y") + repo + "ReposReleases.csv", "wb+"))
     item_keys = []
     item_values = []
 
@@ -116,7 +117,7 @@ def listStats(user_name, repos, headers):
 
 
 def writeStatsToCSV(repo, stats):  # write to csv
-    f = csv.writer(open(repo + "/" + repo + "ReposStats.csv", "wb+"))
+    f = csv.writer(open(repo + "/" + time.strftime("%d%m%Y") + repo +"ReposStats.csv", "wb+"))
     item_keys = []
     item_values = []
 
@@ -192,7 +193,7 @@ def listStatsWeek(user_name, repos, headers):
 
 
 def writeStatsWeekToCSV(repo, statsWeek):  # write to csv
-    f = csv.writer(open(repo + "/" + repo + "ReposStatsWeek.csv", "wb+"))
+    f = csv.writer(open(repo + "/" + time.strftime("%d%m%Y") + repo + "ReposStatsWeek.csv", "wb+"))
     item_keys = []
     item_values = []
 
@@ -270,7 +271,7 @@ def listWeekAddDel(user_name, repos, headers):
 def writeWeekAddDelToCSV(repo, weekAddDel):
     # f = csv.writer(open(repo+"/"+repo+"ReposStatsWeek.csv", "wb+"))
 
-    with open(repo + "/" + repo + 'ReposWeekAddDel' + '.csv', 'wb') as csvfile:
+    with open(repo + "/" + time.strftime("%d%m%Y") + repo + 'ReposWeekAddDel' + '.csv', 'wb') as csvfile:
         userwriter = csv.writer(csvfile, delimiter=',',
                                 quotechar='"', quoting=csv.QUOTE_MINIMAL)
         userwriter.writerow(['Week', 'Addition', 'Deletion'])
@@ -295,10 +296,10 @@ def listWeekAllOwner(user_name, repos, headers):
 def writeWeekAllOwnerToCSV(repo, weekAllOwner):
     # f = csv.writer(open(repo+"/"+repo+"ReposStatsWeek.csv", "wb+"))
 
-    f = csv.writer(open(repo + "/" + repo + "ReposWeekAllOwner.csv", "wb+"))
+    f = csv.writer(open(repo + "/" + time.strftime("%d%m%Y") + repo + "ReposWeekAllOwner.csv", "wb+"))
     item_keys = []
     item_values = []
-
+#   time.strftime("%d%m%Y") + repo
     f.writerow(weekAllOwner.keys())
     f.writerow(weekAllOwner.values())
 
@@ -328,7 +329,7 @@ def listHourDayCommits(user_name, repos, headers):
 
 
 def writeHourDayCommitToCSV(repo, hourDayCommit):
-    with open(repo + "/" + repo + 'ReposHourDayCommit' + '.csv', 'wb') as csvfile:
+    with open(repo + "/" + time.strftime("%d%m%Y") + repo + 'ReposHourDayCommit' + '.csv', 'wb') as csvfile:
         userwriter = csv.writer(csvfile, delimiter=',',
                                 quotechar='"', quoting=csv.QUOTE_MINIMAL)
         userwriter.writerow(['Day', 'Hour', 'Commits'])

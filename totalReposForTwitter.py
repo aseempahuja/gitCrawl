@@ -144,6 +144,9 @@ def main():
     for row in reader:
         count = count + 1
         repo = row[0]
+        if count>2:
+            time.sleep(3600)
+            #you can start crawling after 1 hour
         print repo, count
 
         isExists = os.path.exists(repo)
@@ -151,7 +154,7 @@ def main():
             os.makedirs(repo)
         listInformationForRepos(user_name, repo, headers)
         # a = random.uniform(1,2)
-        time.sleep(0.1)
+
 
     f.close()
 

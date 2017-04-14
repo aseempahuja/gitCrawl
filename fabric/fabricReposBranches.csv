@@ -1,6 +1,6 @@
 commit/url,commit/sha,name
 https://api.github.com/repos/hyperledger/fabric/commits/64f7111eedf6838ad0b4fe534b9aab2230ee180b,64f7111eedf6838ad0b4fe534b9aab2230ee180b,feature/ca
 https://api.github.com/repos/hyperledger/fabric/commits/1e8d499cb5dc36b5362b3c47bc0011be6c31cb19,1e8d499cb5dc36b5362b3c47bc0011be6c31cb19,feature/convergence
-https://api.github.com/repos/hyperledger/fabric/commits/8d3275fca6798a5b5f2aa6883cf45ccc22678a96,8d3275fca6798a5b5f2aa6883cf45ccc22678a96,master
-https://api.github.com/repos/hyperledger/fabric/commits/21c64b48b4cf44503884e739e9c7d2d642a84d5e,21c64b48b4cf44503884e739e9c7d2d642a84d5e,v0.6
+https://api.github.com/repos/hyperledger/fabric/commits/9e40c3c0070303285b4249112c966969551d9056,9e40c3c0070303285b4249112c966969551d9056,master
+https://api.github.com/repos/hyperledger/fabric/commits/1f146986c4c06b6b9e21fff052b4dd38e8dd73cc,1f146986c4c06b6b9e21fff052b4dd38e8dd73cc,v0.6
 https://api.github.com/repos/hyperledger/fabric/commits/c7b3fe02ae982d974423c97bd983ecf7cb3e7deb,c7b3fe02ae982d974423c97bd983ecf7cb3e7deb,v1.0.0-preview

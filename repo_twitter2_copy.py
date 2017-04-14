@@ -26,7 +26,7 @@ def listDeployKeys(user_name, repos, headers):
 
 
 def writeDeployKeysToCSV(repo, deployKeys):  # write to csv
-    f = csv.writer(open(repo + "/" + repo + "ReposDeployKeys.csv", "wb+"))
+    f = csv.writer(open(repo + "/" + time.strftime("%d%m%Y") + repo + "ReposDeployKeys.csv", "wb+"))
     item_keys = []
     item_values = []
 
@@ -85,7 +85,7 @@ def listDeployment(user_name, repos, headers):
 
 
 def writeDeploymentsToCSV(repo, deployments):  # write to csv
-    f = csv.writer(open(repo + "/" + repo + "ReposDeployments.csv", "wb+"))
+    f = csv.writer(open(repo + "/" + time.strftime("%d%m%Y") + repo + "ReposDeployments.csv", "wb+"))
     item_keys = []
     item_values = []
 
@@ -155,7 +155,7 @@ def listForks(user_name, repos, headers):
 
 
 def writeForksToCSV(repo, forks):  # write to csv
-    f = csv.writer(open(repo + "/" + repo + "ReposForks.csv", "wb+"))
+    f = csv.writer(open(repo + "/" + time.strftime("%d%m%Y") + repo + "ReposForks.csv", "wb+"))
     item_keys = []
     item_values = []
 

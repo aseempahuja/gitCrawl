@@ -37,7 +37,7 @@ def listAssignees(user_name, repos, headers):
 
 
 def writeAssigneesToCSV(repo, assignees):  # write to csv
-    f = csv.writer(open(repo + "/" + repo + "ReposAssignees.csv", "wb+"))
+    f = csv.writer(open(repo + "/" + repo + time.strftime("%d%m%Y")+ "ReposAssignees.csv", "wb+"))
     item_keys = []
     item_values = []
 
@@ -112,7 +112,7 @@ def listCommentsForRepos(user_name, repos, headers):
 
 
 def writeReposCommentsToCSV(repo, reposcomments):  # write to csv
-    f = csv.writer(open(repo + "/" + repo + "ReposCommentsForRepos.csv", "wb+"))
+    f = csv.writer(open(repo + "/" + repo + time.strftime("%d%m%Y")+ "ReposCommentsForRepos.csv", "wb+"))
     item_keys = []
     item_values = []
 
@@ -186,7 +186,7 @@ def listIssuesEvents(user_name, repos, headers):
 
 
 def writeIssuesEventsToCSV(repo, issuesEvents):  # write to csv
-    f = csv.writer(open(repo + "/" + repo + "ReposIssuesEvents.csv", "wb+"))
+    f = csv.writer(open(repo + "/" + repo + time.strftime("%d%m%Y")+ "ReposIssuesEvents.csv", "wb+"))
     item_keys = []
     item_values = []
 
@@ -260,7 +260,7 @@ def listIssuesMilestones(user_name, repos, headers):
 
 
 def writeIssuesMilestonesToCSV(repo, issuesmilestones):  # write to csv
-    f = csv.writer(open(repo + "/" + repo + "ReposIssuesMilestones.csv", "wb+"))
+    f = csv.writer(open(repo + "/" + time.strftime("%d%m%Y") + repo + "ReposIssuesMilestones.csv", "wb+"))
     item_keys = []
     item_values = []
 
@@ -333,7 +333,7 @@ def listIssuesLabels(user_name, repos, headers):
 
 
 def writeIssuesLabelsToCSV(repo, issuesLabels):  # write to csv
-    f = csv.writer(open(repo + "/" + repo + "ReposIssuesLabels.csv", "wb+"))
+    f = csv.writer(open(repo + "/" + time.strftime("%d%m%Y") + repo + "ReposIssuesLabels.csv", "wb+"))
     item_keys = []
     item_values = []
 
@@ -406,7 +406,7 @@ def listDownloads(user_name, repos, headers):
 
 
 def writeDownloadsToCSV(repo, downloads):  # write to csv
-    f = csv.writer(open(repo + "/" + repo + "ReposDownloads.csv", "wb+"))
+    f = csv.writer(open(repo + "/" + time.strftime("%d%m%Y") + repo + "ReposDownloads.csv", "wb+"))
     item_keys = []
     item_values = []
 

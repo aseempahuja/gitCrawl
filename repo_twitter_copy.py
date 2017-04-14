@@ -112,7 +112,7 @@ def listContributors(user_name, repos, headers):
 
 def writeContributorsToCSV(repo, contributors):  # write to csv
 
-    f = csv.writer(open(repo + "/" + repo + "ReposContributors.csv", "wb+"))
+    f = csv.writer(open(repo + "/" + time.strftime("%d%m%Y") + repo + "ReposContributors.csv", "wb+"))
     # write_header = True
     item_keys = []
     item_values = []
@@ -164,7 +164,7 @@ def listTags(user_name, repos, headers):
 
 
 def writeTagsToCSV(repo, tags):  # write to csv
-    f = csv.writer(open(repo + "/" + repo + "ReposTags.csv", "wb+"))
+    f = csv.writer(open(repo + "/" + time.strftime("%d%m%Y") + repo + "ReposTags.csv", "wb+"))
     item_keys = []
     item_values = []
 
@@ -223,7 +223,7 @@ def listBranches(user_name, repos, headers):
 
 
 def writeBranchesToCSV(repo, branches):  # write to csv
-    f = csv.writer(open(repo + "/" + repo + "ReposBranches.csv", "wb+"))
+    f = csv.writer(open(repo + "/" + time.strftime("%d%m%Y") + repo + "ReposBranches.csv", "wb+"))
     item_keys = []
     item_values = []
 
@@ -282,7 +282,7 @@ def listPulls(user_name, repos, headers):
 
 
 def writePullsToCSV(repo, pulls):  # write to csv
-    f = csv.writer(open(repo + "/" + repo + "ReposPulls.csv", "wb+"))
+    f = csv.writer(open(repo + "/" + time.strftime("%d%m%Y") + repo + "ReposPulls.csv", "wb+"))
     item_keys = []
     item_values = []
 
@@ -359,7 +359,7 @@ def listComments(user_name, repos, headers):
 
 
 def writeCommentsToCSV(repo, comments):  # write to csv
-    f = csv.writer(open(repo + "/" + repo + "ReposComments.csv", "wb+"))
+    f = csv.writer(open(repo + "/" + time.strftime("%d%m%Y") + repo + "ReposComments.csv", "wb+"))
     item_keys = []
     item_values = []
 
@@ -496,7 +496,7 @@ def listContents(user_name, repos, headers):
 
 
 def writeContentsToCSV(repo, contents):  # write to csv
-    f = csv.writer(open(repo + "/" + repo + "ReposContents.csv", "wb+"))
+    f = csv.writer(open(repo + "/" + time.strftime("%d%m%Y") + repo + "ReposContents.csv", "wb+"))
     item_keys = []
     item_values = []
 
