@@ -12,7 +12,7 @@ import os
 def listInformationForRepos(user_name, repo, headers):
     contributors = listContributors(user_name, repo, headers)
     writeContributorsToCSV(repo, contributors)
-
+####################################################################################
     tags = listTags(user_name, repo, headers)
     # print "tags number is %d" % len(tags)#15
     ##print "one tag has atrribute number is %d" % len(tags[1])
@@ -108,7 +108,7 @@ def listInformationForRepos(user_name, repo, headers):
     reposcomments = listCommentsForRepos(user_name, repo, headers)
     # print "reposcomments number is %d" % len(reposcomments)#4710
     writeReposCommentsToCSV(repo, reposcomments)
-
+#################################################################
     issuesEvents = listIssuesEvents(user_name, repo, headers)
     # print "issuesEvents number is %d" % len(issuesEvents)#4433
     ##print "one issuesEvents has atrribute number is %d" % len(issuesEvents[1])#9

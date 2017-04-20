@@ -3,6 +3,7 @@ from repo_twitter2_copy import *
 from repo_twitter3_copy import *
 from repo_twitter4_copy import *
 from repo_twitter5_copy import *
+import re
 
 import time
 import random
@@ -11,9 +12,9 @@ import os
 
 def listInformationForUsers(proj_name1,user_name, headers):
     followers = listFollowers(user_name, headers)
-    writeFollowersToCSV(proj_name1, user_name,followers);
-    #following = listFollowing(user_name, headers)
-    #writeFollowingToCSV(proj_name1, user_name, following);
+    writeFollowersToCSV(proj_name1, user_name,followers)
+    following = listFollowing(user_name, headers)
+    writeFollowingToCSV(proj_name1, user_name, following)
 
 def listFollowers(user_name, headers):
     data = []
@@ -30,7 +31,7 @@ def listFollowers(user_name, headers):
         repo_followers = requests.get(file_name, headers)
         # print repo_contributors, j#if success(200)
         raw_data = json.loads(repo_followers.text)
-        print raw_data
+        #print raw_data
         page_n = len(raw_data)
         for k in range(page_n):
             data.append(raw_data[k])
@@ -83,7 +84,7 @@ def listFollowing(user_name, headers):
         repo_followers = requests.get(file_name, headers)
         # print repo_contributors, j#if success(200)
         raw_data = json.loads(repo_followers.text)
-        print raw_data
+        #print raw_data
         page_n = len(raw_data)
         for k in range(page_n):
             data.append(raw_data[k])
@@ -124,10 +125,12 @@ def writeFollowingToCSV(proj_name1, repo, contributors):  # write to csv
 
 
 def main():
+    #post all contributors logins into one file preceded by the contributors_of_<proj_name>
+    #the program will sense it is a new project and make a new directory where everything will be stored
     reload(sys)
     sys.setdefaultencoding("utf-8")
 
-
+    matching_argz="contributors_of"
     headers = {'User-Agent': '99992838f540e39d741c', 'Authorization': '3a09aed5aadfccd24b1cedf77fb22198af92a8da'}
     f = file("contributor_names.csv", 'rb')
     f_proj_name = file("proj_name.csv", 'rb')
@@ -139,17 +142,24 @@ def main():
         proj_name1= row1[0]
     count = 1
     for row in reader:
-        count = count + 1
         user_name = row[0]
 
         print user_name, count
+        count = count + 1
 
-        isExists = os.path.exists(proj_name1)
-        if not isExists:
-            os.makedirs(proj_name1)
-        time.sleep(10);
-        listInformationForUsers(proj_name1,user_name,headers)
-        # a = random.uniform(1,2)
+        matchObj=re.match(matching_argz, user_name)
+        if matchObj:
+            #time to change the directory
+            isExists = os.path.exists(user_name)
+            if not isExists:
+                os.makedirs(user_name)
+            proj_name1=user_name
+
+        else:
+            #else store the info
+            time.sleep(10);
+            listInformationForUsers(proj_name1,user_name,headers)
+            # a = random.uniform(1,2)
 
 
     f.close()

@@ -1,1 +1,12 @@
+fabric
+cello
+sawtooth-core
+iroha
+iroha-python
+cello-analytics
+iroha-ametsuchi
+iroha-android
+iroha-javascript
+iroha-scala
+iroha-network-tools
 ci-management
