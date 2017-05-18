@@ -20,7 +20,7 @@ def listIssures(user_name, repos, headers):
 
     while page_n == 100:
         # a = random.uniform(1,2)
-        time.sleep(0.1)
+        #time.sleep(3600)
 
         file_name = "http://api.github.com/repos/" + user_name + "%s/issues?per_page=100&page=%d" % (repos, j)
         repo_issues = requests.get(file_name, headers)

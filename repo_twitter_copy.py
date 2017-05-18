@@ -99,7 +99,8 @@ def listContributors(user_name, repos, headers):
         repo_contributors = requests.get(file_name, headers)
         # print repo_contributors, j#if success(200)
         raw_data = json.loads(repo_contributors.text)
-        print raw_data
+        print repo_contributors.headers
+        print repo_contributors
         page_n = len(raw_data)
         for k in range(page_n):
             data.append(raw_data[k])

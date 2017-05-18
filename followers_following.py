@@ -24,7 +24,7 @@ def listFollowers(user_name, headers):
 
     while page_n == 100:
         # a = random.uniform(1,2)
-        time.sleep(1)
+        time.sleep(10)
        #file_name = "http://api.github.com/repos/" + user_name + "/%s/contributors?per_page=100&page=%d" % (repos, j)
         #/users/jyellick/followers
         file_name = "http://api.github.com/users/%s/followers?per_page=100&page=%d" % (user_name, j)
@@ -82,6 +82,7 @@ def listFollowing(user_name, headers):
 
         file_name = "http://api.github.com/users/%s/following?per_page=100&page=%d" % (user_name, j)
         repo_followers = requests.get(file_name, headers)
+        print repo_followers.headers
         # print repo_contributors, j#if success(200)
         raw_data = json.loads(repo_followers.text)
         #print raw_data
@@ -154,7 +155,7 @@ def main():
             if not isExists:
                 os.makedirs(user_name)
             proj_name1=user_name
-
+            time.sleep(3600)
         else:
             #else store the info
             time.sleep(10);
