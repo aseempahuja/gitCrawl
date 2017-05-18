@@ -1,5 +1,6 @@
 fabric
 cello
+sawtooth-core
 iroha
 iroha-python
 cello-analytics

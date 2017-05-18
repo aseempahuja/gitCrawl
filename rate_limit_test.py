@@ -1,3 +1,4 @@
+from case_insensitive import CaseInsensitiveDict
 from repo_twitter_copy import *
 from repo_twitter2_copy import *
 from repo_twitter3_copy import *
@@ -7,6 +8,28 @@ from repo_twitter5_copy import *
 import time
 import random
 import os
+
+def rate_limit(user_name, headers):
+    data = []
+
+    #file_name = "http://api.github.com/repos/hyperledger/fabric-ca/contributors?per_page=100&page=1"
+    file_name ="https://api.github.com/rate_limit"
+    r_limit= requests.get(file_name, headers)
+    print r_limit
+    print r_limit.headers
+    ci = CaseInsensitiveDict(r_limit.headers)
+    ci.items()
+    print type(r_limit)
+    print ci["X-RateLimit-Remaining"]
+    print type(ci)
+    # for k, v in ci.iteritems():
+    #     print k, v
+    #     print type(k), type(v)
+    #raw_data = json.loads(ci)
+    #print raw_data
+
+
+    return data
 
 
 def listInformationForRepos(user_name, repo, headers):
@@ -91,8 +114,8 @@ def listInformationForRepos(user_name, repo, headers):
     # print "hourDayCommits  number is %d" % len(hourDayCommits)#168
     writeHourDayCommitToCSV(repo, hourDayCommits)
     ################################### 4 ###########################################
-    #if repo is 'fabric' or repo is 'sawtooth-core' or 1:
-        #time.sleep(3600)
+    if repo is 'fabric' or repo is 'sawtooth-core' or 1:
+        time.sleep(3600)
 
     issues = listIssures(user_name, repo, headers)
     # print "issues number is %d" % len(issues)#337
@@ -137,31 +160,36 @@ def listInformationForRepos(user_name, repo, headers):
 def main():
     reload(sys)
     sys.setdefaultencoding("utf-8")
+    api_token='71ad4836d8522281b4c81ba80d01b5a3b05d6590'
+    headers = {'Authorization': 'token %s' % api_token}
 
-    user_name = "hyperledger/"
+    user_name = "aseempahuja"
+    #headers={'pahujaaseem':'026ae0f545d361ef0837059738d581c200947002'}
 
-    headers = {'User-Agent': '99992838f540e39d741c', 'Authorization': '3a09aed5aadfccd24b1cedf77fb22198af92a8da'}
-    f = file("repos_names2.csv", 'rb')
-    reader = csv.reader(f)
-
-    count = 1
-    for row in reader:
-        count = count + 1
-        repo = row[0]
-        if count>2:
-            time.sleep(3600)
-            #you can start crawling after 1 hour
-        print repo, count
-
-        isExists = os.path.exists(repo)
-        if not isExists:
-            os.makedirs(repo)
-        listInformationForRepos(user_name, repo, headers)
-        # a = random.uniform(1,2)
-
-
-    f.close()
-
+    #headers = {'User-Agent': 'pahujaaseem', 'Authorization': '026ae0f545d361ef0837059738d581c200947002'}
+    rate_limit(user_name, headers)
+    # f = file("repos_names2.csv", 'rb')
+    # reader = csv.reader(f)
+    #
+    # count = 1
+    # for row in reader:
+    #     count = count + 1
+    #     repo = row[0]
+    #     time.sleep(3600)
+    #     if count>2:
+    #         time.sleep(3600)
+    #         #you can start crawling after 1 hour
+    #     print repo, count
+    #
+    #     isExists = os.path.exists(repo)
+    #     if not isExists:
+    #         os.makedirs(repo)
+    #     listInformationForRepos(user_name, repo, headers)
+    #     # a = random.uniform(1,2)
+    #
+    #
+    # f.close()
+    #
 
 if __name__ == "__main__":
     main()
