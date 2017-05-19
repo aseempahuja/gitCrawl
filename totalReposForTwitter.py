@@ -159,7 +159,7 @@ def main():
     sys.setdefaultencoding("utf-8")
 
     user_name = "hyperledger/"
-    headers="6cfb332a5f67a5b553f754a4231d8ef18910232f"
+    headers=""
     # api_token='e5d04c6907ef984149015ca3f57696069091c3a1'
     # headers = {'Authorization': 'token %s' % api_token}
 
