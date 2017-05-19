@@ -26,8 +26,8 @@ def listReleases(user_name, repos, headers):
         # a = random.uniform(1,2)
         time.sleep(0.1)
 
-        file_name = "http://api.github.com/repos/" + user_name + "%s/releases?per_page=100&page=%d" % (repos, j)
-        repo_releases = requests.get(file_name, headers)
+        file_name = "https://api.github.com/repos/" + user_name + "%s/releases?per_page=100&page=%d&access_token=%s" % (repos, j, headers)
+        repo_releases = requests.get(file_name)
         # print repo_releases, j#if success(200)
         ##print repo_comments
         raw_data = json.loads(repo_releases.text)
@@ -99,11 +99,9 @@ def listStats(user_name, repos, headers):
 
         time.sleep(0.1)
 
-        file_name = "http://api.github.com/repos/" + user_name + "%s/stats/contributors?per_page=100&page=%d" % (
-        repos, j)
-        repo_stats = requests.get(file_name, headers)
+        file_name = "https://api.github.com/repos/" + user_name + "%s/stats/contributors?per_page=100&page=%d&access_token=%s" % (repos, j, headers)
         time.sleep(1)
-        repo_stats = requests.get(file_name, headers)
+        repo_stats = requests.get(file_name)
         # print j#if success(200)
         ##print repo_comments
         raw_data = json.loads(repo_stats.text)
@@ -175,11 +173,9 @@ def listStatsWeek(user_name, repos, headers):
         # a = random.uniform(1,2)
         time.sleep(0.1)
 
-        file_name = "http://api.github.com/repos/" + user_name + "%s/stats/commit_activity?per_page=100&page=%d" % (
-        repos, j)
-        repo_statsWeek = requests.get(file_name, headers)
+        file_name = "https://api.github.com/repos/" + user_name + "%s/stats/commit_activity?per_page=100&page=%d&access_token=%s" % (repos, j, headers)
         time.sleep(1)
-        repo_statsWeek = requests.get(file_name, headers)
+        repo_statsWeek = requests.get(file_name)
         # print repo_statsWeek, j#if success(200)
         ##print repo_comments
         raw_data = json.loads(repo_statsWeek.text)
@@ -251,11 +247,9 @@ def listWeekAddDel(user_name, repos, headers):
         # a = random.uniform(1,2)
         time.sleep(0.1)
 
-        file_name = "http://api.github.com/repos/" + user_name + "%s/stats/code_frequency?per_page=100&page=%d" % (
-        repos, j)
-        repo_weekAddDel = requests.get(file_name, headers)
+        file_name = "https://api.github.com/repos/" + user_name + "%s/stats/code_frequency?per_page=100&page=%d&access_token=%s" % (repos, j, headers)
         time.sleep(1)
-        repo_weekAddDel = requests.get(file_name, headers)
+        repo_weekAddDel = requests.get(file_name)
         # print repo_weekAddDel, j#if success(200)
         ##print repo_comments
         raw_data = json.loads(repo_weekAddDel.text)
@@ -284,8 +278,8 @@ def listWeekAllOwner(user_name, repos, headers):
     time.sleep(0.1)
     data = []
 
-    file_name = "http://api.github.com/repos/" + user_name + "%s/stats/participation?per_page=100" % (repos)
-    repo_weekAllOwner = requests.get(file_name, headers)
+    file_name = "https://api.github.com/repos/" + user_name + "%s/stats/participation?per_page=100&access_token=%s" % (repos, headers)
+    repo_weekAllOwner = requests.get(file_name)
     ##print repo_contributors#if success(200)
     # print repo_weekAllOwner
     raw_data = json.loads(repo_weekAllOwner.text)
@@ -314,8 +308,8 @@ def listHourDayCommits(user_name, repos, headers):
 
     while page_n == 100:
 
-        file_name = "http://api.github.com/repos/" + user_name + "%s/stats/punch_card?per_page=100&page=%d" % (repos, j)
-        repo_hourDayCommit = requests.get(file_name, headers)
+        file_name = "https://api.github.com/repos/" + user_name + "%s/stats/punch_card?per_page=100&page=%d&access_token=%s" % (repos, j, headers)
+        repo_hourDayCommit = requests.get(file_name)
         ##print repo_contributors#if success(200)
         ##print repo_comments
         raw_data = json.loads(repo_hourDayCommit.text)

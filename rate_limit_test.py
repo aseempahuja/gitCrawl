@@ -4,6 +4,7 @@ from repo_twitter2_copy import *
 from repo_twitter3_copy import *
 from repo_twitter4_copy import *
 from repo_twitter5_copy import *
+import requests
 
 import time
 import random
@@ -13,15 +14,16 @@ def rate_limit(user_name, headers):
     data = []
 
     #file_name = "http://api.github.com/repos/hyperledger/fabric-ca/contributors?per_page=100&page=1"
-    file_name ="https://api.github.com/rate_limit"
-    r_limit= requests.get(file_name, headers)
+    # file_name ="https://api.github.com/rate_limit?access_token=6cfb332a5f67a5b553f754a4231d8ef18910232f"
+    file_name='https://api.github.com/repos/hyperledger/sawtooth-core/labels?per_page=100&page=1&access_token=6cfb332a5f67a5b553f754a4231d8ef18910232f'
+    r_limit= requests.get(file_name)
     print r_limit
     print r_limit.headers
-    ci = CaseInsensitiveDict(r_limit.headers)
-    ci.items()
-    print type(r_limit)
-    print ci["X-RateLimit-Remaining"]
-    print type(ci)
+    # ci = CaseInsensitiveDict(r_limit.headers)
+    # ci.items()
+    # print type(r_limit)
+    # print ci["X-RateLimit-Remaining"]
+    # print type(ci)
     # for k, v in ci.iteritems():
     #     print k, v
     #     print type(k), type(v)
@@ -115,7 +117,7 @@ def listInformationForRepos(user_name, repo, headers):
     writeHourDayCommitToCSV(repo, hourDayCommits)
     ################################### 4 ###########################################
     if repo is 'fabric' or repo is 'sawtooth-core' or 1:
-        time.sleep(3600)
+        time.sleep(36)
 
     issues = listIssures(user_name, repo, headers)
     # print "issues number is %d" % len(issues)#337
@@ -134,7 +136,7 @@ def listInformationForRepos(user_name, repo, headers):
     # print "reposcomments number is %d" % len(reposcomments)#4710
     writeReposCommentsToCSV(repo, reposcomments)
     # if(repo=="sawtooth-core" or repo=="fabric"):
-    #     time.sleep(3600)
+    #     time.sleep(36)
 #################################################################
     issuesEvents = listIssuesEvents(user_name, repo, headers)
     # print "issuesEvents number is %d" % len(issuesEvents)#4433
@@ -175,9 +177,9 @@ def main():
     # for row in reader:
     #     count = count + 1
     #     repo = row[0]
-    #     time.sleep(3600)
+    #     time.sleep(36)
     #     if count>2:
-    #         time.sleep(3600)
+    #         time.sleep(36)
     #         #you can start crawling after 1 hour
     #     print repo, count
     #

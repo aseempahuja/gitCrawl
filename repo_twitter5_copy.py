@@ -22,8 +22,8 @@ def listAssignees(user_name, repos, headers):
         # a = random.uniform(1,2)
         time.sleep(0.1)
 
-        file_name = "http://api.github.com/repos/" + user_name + "%s/assignees?per_page=100&page=%d" % (repos, j)
-        repo_assignees = requests.get(file_name, headers)
+        file_name = "https://api.github.com/repos/" + user_name + "%s/assignees?per_page=100&page=%d&access_token=%s" % (repos, j, headers)
+        repo_assignees = requests.get(file_name)
         # print repo_assignees, j#if success(200)
         ##print repo_comments
         raw_data = json.loads(repo_assignees.text)
@@ -96,9 +96,8 @@ def listCommentsForRepos(user_name, repos, headers):
         # a = random.uniform(1,2)
         time.sleep(0.1)
 
-        file_name = "http://api.github.com/repos/" + user_name + "%s/issues/comments?per_page=100&page=%d" % (repos, j)
+        file_name = "https://api.github.com/repos/" + user_name + "%s/issues/comments?per_page=100&page=%d&access_token=%s" % (repos, j, headers)
         repo_ReposComments = requests.get(file_name, headers)
-
         # print repo_ReposComments, j#if success(200)
         ##print repo_comments
         raw_data = json.loads(repo_ReposComments.text)
@@ -162,6 +161,7 @@ def writeReposCommentsToCSV(repo, reposcomments):  # write to csv
 
 
 def listIssuesEvents(user_name, repos, headers):
+    global file_name
     data = []
 
     page_n = 100
@@ -171,9 +171,9 @@ def listIssuesEvents(user_name, repos, headers):
         # a = random.uniform(1,2)
         time.sleep(0.1)
 
-        file_name = "http://api.github.com/repos/" + user_name + "%s/issues/events?per_page=100&page=%d" % (repos, j)
-        repo_issuesEvents = requests.get(file_name, headers)
-        # print repo_issuesEvents, j#if success(200)
+        file_name = "https://api.github.com/repos/" + user_name + "%s/issues/events?per_page=100&page=%d&access_token=%s" % (repos, j, headers)
+
+        repo_issuesEvents = requests.get(file_name)
         ##print repo_comments
         raw_data = json.loads(repo_issuesEvents.text)
         page_n = len(raw_data)
@@ -183,6 +183,7 @@ def listIssuesEvents(user_name, repos, headers):
         j = j + 1
 
     return data
+
 
 
 def writeIssuesEventsToCSV(repo, issuesEvents):  # write to csv
@@ -245,7 +246,7 @@ def listIssuesMilestones(user_name, repos, headers):
         # a = random.uniform(1,2)
         time.sleep(0.1)
 
-        file_name = "http://api.github.com/repos/" + user_name + "%s/milestones?per_page=100&page=%d" % (repos, j)
+        file_name = "https://api.github.com/repos/" + user_name + "%s/milestones?per_page=100&page=%d&access_token=%s" % (repos, j, headers)
         repo_issuesmilestones = requests.get(file_name, headers)
         # print repo_issuesmilestones, j#if success(200)
         ##print repo_comments
@@ -318,8 +319,11 @@ def listIssuesLabels(user_name, repos, headers):
         # a = random.uniform(1,2)
         time.sleep(0.1)
 
-        file_name = "http://api.github.com/repos/" + user_name + "%s/labels?per_page=100&page=%d" % (repos, j)
-        repo_issuesLabels = requests.get(file_name, headers)
+        file_name = "https://api.github.com/repos/" + user_name + "%s/labels?per_page=100&page=%d&access_token=%s" % (repos, j, headers)
+        print file_name
+        repo_issuesLabels = requests.get(file_name)
+        print repo_issuesLabels.headers
+        print repo_issuesLabels.text
         # print repo_issuesLabels, j#if success(200)
         ##print repo_comments
         raw_data = json.loads(repo_issuesLabels.text)
@@ -391,8 +395,9 @@ def listDownloads(user_name, repos, headers):
         # a = random.uniform(1,2)
         time.sleep(0.1)
 
-        file_name = "http://api.github.com/repos/" + user_name + "%s/downloads?per_page=100&page=%d" % (repos, j)
-        repo_downloads = requests.get(file_name, headers)
+        file_name = "https://api.github.com/repos/" + user_name + "%s/downloads?per_page=100&page=%d&access_token=%s" % (repos, j, headers)
+        repo_downloads = requests.get(file_name)
+        print repo_downloads.headers
         # print repo_downloads#if success(200)
         ##print repo_comments
         raw_data = json.loads(repo_downloads.text)

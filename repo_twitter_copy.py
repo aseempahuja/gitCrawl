@@ -22,7 +22,7 @@ def convert(data):  # unicode to dict
         return data
 
 
-def listAllReposNames(user_name):  # get all repository about twitter
+def listAllReposNames(user_name, headers):  # get all repository about twitter
     data = []
     dataName = []
 
@@ -33,7 +33,7 @@ def listAllReposNames(user_name):  # get all repository about twitter
         # a = random.uniform(1,2)
         time.sleep(1)
 
-        file_name = "http://api.github.com/orgs/" + user_name + "repos?per_page=100&page=%d" % (j)
+        file_name = "https://api.github.com/orgs/" + user_name + "repos?per_page=100&page=%d&access_token=%s" % (j, headers)
 
         repo_twitter = requests.get(file_name)
         # print repo_twitter#if success(200)
@@ -94,9 +94,10 @@ def listContributors(user_name, repos, headers):
     while page_n == 100:
         # a = random.uniform(1,2)
         time.sleep(1)
-       #file_name = "http://api.github.com/repos/" + user_name + "/%s/contributors?per_page=100&page=%d" % (repos, j)
-        file_name = "http://api.github.com/repos/" + user_name + "%s/contributors?per_page=100&page=%d" % (repos, j)
-        repo_contributors = requests.get(file_name, headers)
+        #file_name = "http://api.github.com/repos/" + user_name + "/%s/contributors?per_page=100&page=%d" % (repos, j)
+        file_name = "https://api.github.com/repos/" + user_name + "%s/contributors?per_page=100&page=%d&access_token=%s" % (repos, j, headers)
+        print file_name
+        repo_contributors = requests.get(file_name)
         # print repo_contributors, j#if success(200)
         raw_data = json.loads(repo_contributors.text)
         print repo_contributors.headers
@@ -151,8 +152,8 @@ def listTags(user_name, repos, headers):
         # a = random.uniform(1,2)
         time.sleep(1)
 
-        file_name = "http://api.github.com/repos/" + user_name + "%s/tags?per_page=100&page=%d" % (repos, j)
-        repo_tags = requests.get(file_name, headers)
+        file_name = "https://api.github.com/repos/" + user_name + "%s/tags?per_page=100&page=%d&access_token=%s" % (repos, j, headers)
+        repo_tags = requests.get(file_name)
         # print repo_tags,j#if success(200)
         raw_data = json.loads(repo_tags.text)
         page_n = len(raw_data)
@@ -210,8 +211,8 @@ def listBranches(user_name, repos, headers):
         # a = random.uniform(1,2)
         time.sleep(1)
 
-        file_name = "http://api.github.com/repos/" + user_name + "%s/branches?per_page=100&page=%d" % (repos, j)
-        repo_branch = requests.get(file_name, headers)
+        file_name = "https://api.github.com/repos/" + user_name + "%s/branches?per_page=100&page=%d&access_token=%s" % (repos, j, headers)
+        repo_branch = requests.get(file_name)
         # print repo_branch, j#if success(200)
         raw_data = json.loads(repo_branch.text)
         page_n = len(raw_data)
@@ -269,8 +270,8 @@ def listPulls(user_name, repos, headers):
         # a = random.uniform(1,2)
         time.sleep(0.1)
 
-        file_name = "http://api.github.com/repos/" + user_name + "%s/pulls?per_page=100&page=%d" % (repos, j)
-        repo_pulls = requests.get(file_name, headers)
+        file_name = "https://api.github.com/repos/" + user_name + "%s/pulls?per_page=100&page=%d&access_token=%s" % (repos, j, headers)
+        repo_pulls = requests.get(file_name)
         # print repo_pulls,j#if success(200)
         raw_data = json.loads(repo_pulls.text)
         page_n = len(raw_data)
@@ -345,8 +346,8 @@ def listComments(user_name, repos, headers):
         # a = random.uniform(1,2)
         time.sleep(0.1)
 
-        file_name = "http://api.github.com/repos/" + user_name + "%s/comments?per_page=100&page=%d" % (repos, j)
-        repo_comments = requests.get(file_name, headers)
+        file_name = "https://api.github.com/repos/" + user_name + "%s/comments?per_page=100&page=%d&access_token=%s" % (repos, j, headers)
+        repo_comments = requests.get(file_name)
         # print repo_comments, j#if success(200)
         ##print repo_comments
         raw_data = json.loads(repo_comments.text)
@@ -416,8 +417,8 @@ def listCommits(user_name, repos, headers):
 
     while page_n == 100:
 
-        file_name = "http://api.github.com/repos/" + user_name + "%s/commits?per_page=100&page=%d" % (repos, j)
-        repo_commits = requests.get(file_name, headers)
+        file_name = "https://api.github.com/repos/" + user_name + "%s/commits?per_page=100&page=%d&access_token=%s" % (repos, j, headers)
+        repo_commits = requests.get(file_name)
         # print repo_commits,j
         raw_data = json.loads(repo_commits.text)
         page_n = len(raw_data)
@@ -487,9 +488,9 @@ def writeCommitsToCSV(repo, commits):  # write to csv
 def listContents(user_name, repos, headers):
     # a = random.uniform(1,2)
     time.sleep(1)
-    file_name = "http://api.github.com/repos/" + user_name + "%s/readme?per_page=100" % repos
-    repo_contents = requests.get(file_name, headers)
-    repo_contents
+    file_name = "https://api.github.com/repos/" + user_name + "%s/readme?per_page=100&access_token=%s" % (repos, headers)
+    repo_contents = requests.get(file_name)
+
     ##print "contents is %s" % repo_contents
     raw_data = json.loads(repo_contents.text)
 
@@ -533,7 +534,8 @@ def main():
     reload(sys)
     sys.setdefaultencoding("utf-8")
     user_name = 'twitter/'
-    repos, reposNames = listAllReposNames(user_name)
+    headers ="6cfb332a5f67a5b553f754a4231d8ef18910232f"
+    repos, reposNames = listAllReposNames(user_name, headers)
 
     # contributors=listContributors(user_name,repos.get("name"))#list contributors
     # #print "contributors number is %d" % len(contributors)#71

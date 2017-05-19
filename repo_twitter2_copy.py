@@ -17,8 +17,8 @@ def listDeployKeys(user_name, repos, headers):
     # a = random.uniform(1,2)
     time.sleep(0.1)
 
-    file_name = "http://api.github.com/repos/" + user_name + "%s/keys?per_page=100" % repos
-    repo_DeployKeys = requests.get(file_name, headers)
+    file_name = "https://api.github.com/repos/" + user_name + "%s/keys?per_page=100&access_token=%s" % (repos, headers)
+    repo_DeployKeys = requests.get(file_name)
     # print repo_DeployKeys
     raw_data = json.loads(repo_DeployKeys.text)
 
@@ -71,8 +71,8 @@ def listDeployment(user_name, repos, headers):
     while page_n == 100:
         # a = random.uniform(1,2)
         time.sleep(0.1)
-        file_name = "http://api.github.com/repos/" + user_name + "%s/deployments?per_page=100&page=%d" % (repos, j)
-        repo_deployments = requests.get(file_name, headers)
+        file_name = "https://api.github.com/repos/" + user_name + "%s/deployments?per_page=100&page=%d&access_token=%s" % (repos, j, headers)
+        repo_deployments = requests.get(file_name)
         # print repo_deployments, j#if success(200)
         raw_data = json.loads(repo_deployments.text)
         page_n = len(raw_data)
@@ -140,7 +140,7 @@ def listForks(user_name, repos, headers):
         # a = random.uniform(1,2)
         time.sleep(0.1)
 
-        file_name = "http://api.github.com/repos/" + user_name + "%s/forks?per_page=100&page=%d" % (repos, j)
+        file_name = "https://api.github.com/repos/" + user_name + "%s/forks?per_page=100&page=%d&access_token=%s" % (repos, j, headers)
         repo_forks = requests.get(file_name, headers)
         # print repo_forks, j#if success(200)
         ##print repo_comments
