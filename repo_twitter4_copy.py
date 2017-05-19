@@ -20,10 +20,10 @@ def listIssures(user_name, repos, headers):
 
     while page_n == 100:
         # a = random.uniform(1,2)
-        #time.sleep(3600)
+        #time.sleep(36)
 
-        file_name = "http://api.github.com/repos/" + user_name + "%s/issues?per_page=100&page=%d" % (repos, j)
-        repo_issues = requests.get(file_name, headers)
+        file_name = "https://api.github.com/repos/" + user_name + "%s/issues?per_page=100&page=%d&access_token=%s" % (repos, j, headers)
+        repo_issues = requests.get(file_name)
         # print repo_issues, j#if success(200)
         raw_data = json.loads(repo_issues.text)
         page_n = len(raw_data)
